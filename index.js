@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 //mongo config and connection
 const mongoClient = require('mongodb').MongoClient
 
-const url = 'mongodb://localhost:27017'
+const url = 'mongodb+srv://asd:cgeTt8FZJ3IybANI@prifm.z9z6j.mongodb.net/prifm?retryWrites=true&w=majority'
 const client = new mongoClient(url,{ useUnifiedTopology: true })
 
 const dbs='prifmdb'
