@@ -14,7 +14,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-
+//port
+app.set('port', process.env.PORT || 8001)
 //mongo config and connection
 const mongoClient = require('mongodb').MongoClient
 
@@ -31,18 +32,14 @@ client.connect((res,err)=>{
     collection = db.collection("movimientos")
 })
 
-let user = 0;
 
 app.get('/', function (req, res) {
-    user++;
-    console.log(user)
-    res.status(200)   
+    res.status(200).send("great, it's working")
 })
  
 app.post('/new',(req,res)=>{
     console.log(req.body)
     collection.insertOne(req.body)
-    console.log("intento de  llenado")
     res.status(200)
 })
 
@@ -53,7 +50,9 @@ app.post("/query",async (req,res)=>{
     res.status(200).send(info)
 })
 
-app.listen(8001)
+app.listen(app.get('port'),()=>{
+	console.log("server on port",app.get('port'))
+})
 /*
 {
     "nombre":"Salida san javier",
